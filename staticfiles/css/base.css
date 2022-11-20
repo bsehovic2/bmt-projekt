@@ -1,0 +1,19 @@
+/* static/css/base.css */
+h1 {
+  color: red;
+}
+
+.profilepic_post {
+  height: 45px;
+  width: auto;
+}
+
+.profilepic_comment {
+  height: 35px;
+  width: auto;
+}
+
+.profilepic_profile {
+  height: 200px;
+  width: auto;
+}

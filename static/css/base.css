@@ -1,0 +1,24 @@
+/* static/css/base.css */
+body {
+  min-height: 75rem;
+  padding-top: 4.5rem;
+}
+
+h1 {
+  color: red;
+}
+
+.profilepic_post {
+  height: 45px;
+  width: auto;
+}
+
+.profilepic_comment {
+  height: 35px;
+  width: auto;
+}
+
+.profilepic_profile {
+  height: 200px;
+  width: auto;
+}
