@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # Local
     "accounts.apps.AccountsConfig",  # new
     "pages.apps.PagesConfig",  # new
+    "posts.apps.PostsConfig",
 ]
 
 MIDDLEWARE = [
@@ -159,3 +160,7 @@ ACCOUNT_USERNAME_REQUIRED = True  #
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"  # new
 ACCOUNT_EMAIL_REQUIRED = True  # new
 ACCOUNT_UNIQUE_EMAIL = True  # new
+ACCOUNT_PRESERVE_USERNAME_CASING = False # False = username je lowercase
+ACCOUNT_USERNAME_BLACKLIST = ["nigger"]
+
+TIME_ZONE = 'America/New_York' # new
