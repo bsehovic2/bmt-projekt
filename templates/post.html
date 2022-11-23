@@ -1,0 +1,14 @@
+<!-- templates/post.html -->
+{% extends '_base.html' %}
+
+{% block content %}
+  <div class="post-entry">
+    <h2>{{ object.title }}</h2>
+    <p>by {{ object.author }} | {{ object.date }}</p>
+    <p>{{ object.body }}</p>
+  </div>
+
+  <p><a href="{% url 'post_edit' post.pk %}">Edit</a> |
+    <a href="{% url 'post_delete' post.pk %}">Delete</a></p>
+  <p>Back to <a href="{% url 'home' %}">Home</a>.</p>
+{% endblock content %}

@@ -9,4 +9,23 @@
   <img class="profilepic_profile" src="{% static 'images/irma.jpg' %}">
   <img class="profilepic_comment" src="{% static 'images/irma.jpg' %}">
   <img class="profilepic_post" src="{% static 'images/irma.jpg' %}">
+
+  {% for post in object_list %}
+    <div class="card">
+      <div class="card-header">
+        <span class="font-weight-bold">{{ post.title }}</span> &middot;
+        <span class="text-muted">by @{{ post.author }} | {{ post.date }}</span>
+      </div>
+      <div class="card-body">
+        {{ post.body }}
+      </div>
+      <div class="card-footer text-center text-muted">
+        <a href="{% url 'post_edit' post.pk %}">Edit</a> |
+        <a href="{% url 'post_delete' post.pk %}">Delete</a>
+      </div>
+
+    </div>
+    <br />
+  {% endfor %}
+
 {% endblock content %}
