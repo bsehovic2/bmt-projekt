@@ -2,7 +2,7 @@
 {% extends "_base.html" %}
 {% load static %}
 
-{% block title %}Home{% endblock title %}
+{% block title %}Amor @{{ user.username }}{% endblock title %}
 
 {% block content %}
   <h1>homepage za app</h1>
@@ -12,16 +12,37 @@
 
   {% for post in object_list %}
     <div class="card">
+
       <div class="card-header">
-        <span class="font-weight-bold">{{ post.title }}</span> &middot;
+        <a href="{% url 'post' post.pk %}"><span class="font-weight-bold">{{ post.title }}</span></a> &middot;
         <span class="text-muted">by @{{ post.author }} | {{ post.date }}</span>
       </div>
+
       <div class="card-body">
-        {{ post.body }}
+        <p>{{ post.body }}</p>
+        <!-- znaci samo author posta moze vidjet edit i delete, al nesto nece -->
+        {% if post.author.username == user.username %}
+          <a href="{% url 'post_edit' post.pk %}">Edit</a> |
+          <a href="{% url 'post_delete' post.pk %}">Delete</a>
+        {% endif %}
       </div>
-      <div class="card-footer text-center text-muted">
-        <a href="{% url 'post_edit' post.pk %}">Edit</a> |
-        <a href="{% url 'post_delete' post.pk %}">Delete</a>
+
+      <div class="card-footer">
+        {% for comment in post.comments.all %}
+          <p>
+            <span class="font-weight-bold">
+              @{{ comment.author }} &middot;
+            </span>
+            {{ comment }}
+            &middot; {% if comment.author.username == user.username or post.author.username == user.username %}
+            <a href="#">Delete</a>
+            {% endif %}
+          </p>
+        {% endfor %}
+
+        <span class="font-weight-bold">
+               <a href="#">Add comment</a>
+        </span>
       </div>
 
     </div>
