@@ -2,48 +2,31 @@
 {% extends "_base.html" %}
 {% load static %}
 
-{% block title %}Amor @{{ user.username }}{% endblock title %}
+{% block title %}BMT @{{ user.username }}{% endblock title %}
 
 {% block content %}
-  <h1>homepage za app</h1>
-  <img class="profilepic_profile" src="{% static 'images/irma.jpg' %}">
-  <img class="profilepic_comment" src="{% static 'images/irma.jpg' %}">
-  <img class="profilepic_post" src="{% static 'images/irma.jpg' %}">
+  <h1>Entries</h1>
 
-  {% for post in object_list %}
+  {% for entry in object_list %}
     <div class="card">
 
-      <div class="card-header">
-        <a href="{% url 'post' post.pk %}"><span class="font-weight-bold">{{ post.title }}</span></a> &middot;
-        <span class="text-muted">by @{{ post.author }} | {{ post.date }}</span>
+
+        {% if entry.type %}
+      <div class="card-header" style="background-color: green;">
+        {% else %}
+      <div class="card-header" style="background-color: red;">
+        {% endif %}
+
+        <a href="{% url 'entry' entry.pk %}"><span class="nav-link text-white">{{ entry.date }}</span></a>
+
       </div>
 
       <div class="card-body">
-        <p>{{ post.body }}</p>
-        <!-- znaci samo author posta moze vidjet edit i delete, al nesto nece -->
-        {% if post.author.username == user.username %}
-          <a href="{% url 'post_edit' post.pk %}">Edit</a> |
-          <a href="{% url 'post_delete' post.pk %}">Delete</a>
-        {% endif %}
+        <span class="text-muted">{{entry.user.first_name}} {{entry.user.last_name}} ({{ entry.user.uid }}) </span>
+
       </div>
 
-      <div class="card-footer">
-        {% for comment in post.comments.all %}
-          <p>
-            <span class="font-weight-bold">
-              @{{ comment.author }} &middot;
-            </span>
-            {{ comment }}
-            &middot; {% if comment.author.username == user.username or post.author.username == user.username %}
-            <a href="#">Delete</a>
-            {% endif %}
-          </p>
-        {% endfor %}
 
-        <span class="font-weight-bold">
-               <a href="#">Add comment</a>
-        </span>
-      </div>
 
     </div>
     <br />

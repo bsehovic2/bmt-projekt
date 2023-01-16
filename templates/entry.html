@@ -1,0 +1,35 @@
+<!-- templates/entry.html -->
+{% extends '_base.html' %}
+
+{% block title %}BMT {{ entry.date }}{% endblock title %}
+
+{% block content %}
+
+    {% if entry.type %}
+      <div class="card-header" style="background-color: green;">
+    {% else %}
+      <div class="card-header" style="background-color: red;">
+    {% endif %}
+
+        <a href="{% url 'entry' entry.pk %}"><span class="font-weight-bold text-white text-decoration-none">{{ entry.date }}</span></a>
+
+      </div>
+
+      <div class="card-body">
+        <span class="text-muted">{{entry.user.first_name}} {{entry.user.last_name}} ({{ entry.user.uid }}) </span>
+
+          {% if not entry.type %}
+          <div> mozda u slucaju da ima i ulaz i izlaz da kad se otvori pojedinacni link da pokaze i kad je usao i kad je izasao i koliko je kostalo</div>
+          {% endif %}
+
+      </div>
+
+
+
+
+
+
+  <br/>
+  <p>Back to <a href="{% url 'home' %}">Home</a>.</p>
+
+{% endblock content %}
