@@ -13,3 +13,11 @@ class SignupPageView(generic.CreateView):
     template_name = "registration/signup.html"
 
 
+class UserAPIListView(generics.ListCreateAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = UserSerializer
+
+
+class UserAPIDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = CustomUser.objects.all()
+    serializer_class = UserSerializer
